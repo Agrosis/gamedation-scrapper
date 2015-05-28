@@ -16,7 +16,8 @@ object GetGameJoltGame extends Controller {
       id <- request.pathVars.get("id").map(_.toInt);
       scraper <- Scraper(gameUrl(id));
       title <- scraper.text("div.game-title > h2");
-      rating <- scraper.text("div.game-rating-overall")
+      rating <- scraper.text("div.game-rating-overall");
+      category <- scraper.text("tbody > tr:nth-child(2) strong + a")
     ) yield {
       JsObject(
         "name" -> title,
@@ -24,7 +25,9 @@ object GetGameJoltGame extends Controller {
         "windows" -> scraper.exists("i.jolticon-windows"),
         "mac" -> scraper.exists("i.jolticon-mac"),
         "linux" -> scraper.exists("i.jolticon-linux"),
-        "browser" -> scraper.exists("div.online-game-container")
+        "browser" -> scraper.exists("div.online-game-container"),
+        "screenshots" -> scraper.getListAttributes(".media-item.screenshot", "data-image"),
+        "category" -> category
       )
     }
 

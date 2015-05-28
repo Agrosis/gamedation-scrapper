@@ -12,7 +12,7 @@ object Scrapper {
   val routes = HttpRoutes(
     HttpGetMethodRoutes(
       HttpPathRoute("/", Index),
-      HttpPathRoute(new Regex(s"/gjgame/([0-9]+)", "id"), GetGameJoltGame)
+      HttpPathRoute(new Regex(s"/gamejolt/([0-9]+)", "id"), GetGameJoltGame)
     )
   )
 
