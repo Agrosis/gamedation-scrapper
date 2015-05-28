@@ -19,7 +19,8 @@ object Build extends Build {
       scalacOptions         += "-language:implicitConversions",
       resolvers             ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo),
       resolvers             += "Plasma Conduit Repository" at "http://dl.bintray.com/plasmaconduit/releases",
-      libraryDependencies   += "com.plasmaconduit"     %% "plasmaconduit-framework" % "0.50.0"
+      libraryDependencies   += "com.plasmaconduit" %% "plasmaconduit-framework" % "0.50.0",
+      libraryDependencies   += "org.jsoup"          % "jsoup"                   % "1.7.2"
     )
 
 }
