@@ -1,6 +1,6 @@
 package com.gamedation.scrapper
 
-import com.gamedation.scrapper.controllers.{GetGameJoltGame, Index}
+import com.gamedation.scrapper.controllers.{GetSteamGame, GetGameJoltGame, Index}
 import com.plasmaconduit.framework.PlasmaConduit
 import com.plasmaconduit.framework.routes.containers.{HttpGetMethodRoutes, HttpRoutes}
 import com.plasmaconduit.framework.routes.destinations.HttpPathRoute
@@ -12,7 +12,8 @@ object Scrapper {
   val routes = HttpRoutes(
     HttpGetMethodRoutes(
       HttpPathRoute("/", Index),
-      HttpPathRoute(new Regex(s"/gamejolt/([0-9]+)", "id"), GetGameJoltGame)
+      HttpPathRoute(new Regex(s"/gamejolt/([0-9]+)", "id"), GetGameJoltGame),
+      HttpPathRoute(new Regex(s"/steam/([0-9]+)", "id"), GetSteamGame)
     )
   )
 

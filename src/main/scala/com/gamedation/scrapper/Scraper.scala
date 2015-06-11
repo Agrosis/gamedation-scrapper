@@ -19,7 +19,8 @@ final case class Scraper(doc: Document) {
     val list = Option(doc.select(selectors))
     list match {
       case Some(l) => {
-        l.subList(0, l.size() - 1).toList.map(_.attr(attribute))
+        if(l.size() == 0) List()
+        else l.subList(0, l.size()).toList.map(_.attr(attribute))
       }
       case _ => List()
     }
